@@ -5,12 +5,10 @@ import {
     AiFillYoutube,
     AiFillInstagram,
     AiFillGithub,
-    AiFillCode,
-    AiFillCodeSandboxCircle,
     AiFillBulb,
 } from "react-icons/ai";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import deved from "../public/dev-ed-wave.png";
 import profile from "../public/profile.jpg";
 import code from "../public/code.png";
@@ -30,6 +28,20 @@ import Logo from "../components/icons/Logo";
 export default function Home() {
     const [darkMode, setDarkMode] = useState(false);
 
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
+
+    const handleScroll = useCallback(() => {
+        const currentScrollPos = window.pageYOffset;
+        setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+        setPrevScrollPos(currentScrollPos);
+    }, [prevScrollPos]);
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [prevScrollPos, visible, handleScroll]);
+
     return (
         <div className={darkMode ? "dark" : ""}>
             <Head>
@@ -38,30 +50,34 @@ export default function Home() {
                 <link rel='icon' href='/favicon.ico' />
             </Head>
             <main className=' bg-white dark:bg-gray-900 '>
-                <section className='min-h-screen mt-[6rem]  w-[calc(100%-2rem)] m-auto'>
-                    <nav className='p-3 px-5 mb-12 bg-stone-300 fixed left-4 top-2 -translate-x-2 w-[calc(100%-1rem)] z-50 rounded-lg  flex justify-between dark:text-white'>
-                        {/* logo image  */}
-                        <div className='flex w-10 h-10 items-center gap-4 '>
-                            <Logo />
+                <nav
+                    className={`p-3 px-5  bg-stone-200  w-[calc(100%-2rem)] m-auto sticky ${
+                        visible ? "top-2" : ""
+                    } z-50  rounded-lg  flex justify-between dark:text-white`}
+                >
+                    {/* logo image  */}
+                    <div className='flex w-10 h-10  items-center gap-4 '>
+                        <Logo />
+                    </div>
+                    <div className='flex items-center'>
+                        <div>
+                            <BsFillMoonStarsFill
+                                onClick={() => setDarkMode(!darkMode)}
+                                className=' cursor-pointer text-2xl'
+                            />
                         </div>
-                        <div className='flex items-center'>
-                            <div>
-                                <BsFillMoonStarsFill
-                                    onClick={() => setDarkMode(!darkMode)}
-                                    className=' cursor-pointer text-2xl'
-                                />
-                            </div>
-                            <div>
-                                <a
-                                    className='bg-gradient-to-r from-cyan-500 text- to-teal-500 text-white px-4 py-2 border-none rounded-md ml-8'
-                                    href='#'
-                                >
-                                    Menu
-                                </a>
-                            </div>
+                        <div>
+                            <a
+                                className='bg-gradient-to-r from-cyan-500 text- to-teal-500 text-white px-4 py-2 border-none rounded-md ml-8'
+                                href='#'
+                            >
+                                Menu
+                            </a>
                         </div>
-                    </nav>
-                    <div className='text-center w-full'>
+                    </div>
+                </nav>
+                <section className='min-h-screen  w-[calc(100%-2rem)] m-auto mt-3 relative'>
+                    <div className='text-center w-full '>
                         <h2 className='text-3xl py-2 text-teal-600 font-medium dark:text-teal-400 md:text-6xl'>
                             Raj Naik Dhulapkar
                         </h2>
