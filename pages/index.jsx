@@ -92,20 +92,19 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section>
+            <section className='w-[calc(100%-2rem)] m-auto mt-3'>
                 <div>
-                    <h3 className='text-3xl py-1 dark:text-white '>Services I offer</h3>
+                    <h3 className='text-3xl py-1 dark:text-white '>About me</h3>
                     <p className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>
-                        Since the beginning of my journey as a freelance designer and developer,
-                        I&apos;ve done remote work for
-                        <span className='text-teal-500'> agencies </span>
-                        consulted for <span className='text-teal-500'>startups </span>
-                        and collaborated with talented people to create digital products for both
-                        business and consumer use.
-                    </p>
-                    <p className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>
-                        I offer from a wide range of services, including brand design, programming
-                        and teaching.
+                        💻 I'm a Full Stack Developer 🔥 who is passionate about building efficient
+                        and innovative web applications 💻. When I'm not coding, you can find me
+                        exploring my passions for hardware 🔧, robotics 🤖, and drone technology 🛸.
+                        I love to push the boundaries of what's possible and am always eager to try
+                        out new technologies 🚀. I'm also a hobbyist percussionist 🥁, and I love to
+                        rock out on my launchpad 🎹 and tabla 🥁. And when I need a break, I love to
+                        lose myself in a good book 📚, especially non-fiction 🧐. I'm constantly on
+                        the lookout for new challenges and opportunities to grow, both
+                        professionally 💼 and personally 🧔.
                     </p>
                 </div>
                 <div className='lg:flex gap-10'>
