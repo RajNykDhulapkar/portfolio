@@ -7,10 +7,10 @@ function HomeLayout({ children }) {
     const [darkMode, setDarkMode] = useState(false);
 
     return (
-        <div className={darkMode ? "dark" : ""}>
-            <main className=' bg-white dark:bg-gray-900 '>
+        <div className={(darkMode ? "dark" : "") + " "}>
+            <main className=' bg-white dark:bg-gray-900 flex flex-col min-h-screen'>
                 <Header setDarkMode={setDarkMode} />
-                {children}
+                <div className='flex-grow'>{children}</div>
                 <Footer />
             </main>
         </div>
