@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Logo from "./icons/Logo";
 import Link from "next/link";
 
-const Header = ({ setDarkMode }) => {
+const Header = ({ setDarkMode , darkMode}) => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
 
@@ -18,9 +18,14 @@ const Header = ({ setDarkMode }) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [prevScrollPos, visible, handleScroll]);
 
+    const handleThemeChange = () => {
+        localStorage.setItem("darkMode", !darkMode);
+        setDarkMode((prev) => !prev);
+    };
+
     return (
         <nav
-            className={`p-3 px-5  bg-slate-300  w-[calc(100%-2rem)] m-auto sticky ${
+            className={`p-3 px-5  bg-slate-300  w-[calc(100%-2rem)] lg:w-[calc(60%-2rem)] m-auto sticky ${
                 visible ? "top-2" : ""
             } z-50  rounded-lg  flex justify-between dark:text-white`}
         >
@@ -33,7 +38,7 @@ const Header = ({ setDarkMode }) => {
             <div className='flex items-center'>
                 <div>
                     <BsFillMoonStarsFill
-                        onClick={() => setDarkMode((prev) => !prev)}
+                        onClick={handleThemeChange}
                         className=' cursor-pointer text-2xl'
                     />
                 </div>

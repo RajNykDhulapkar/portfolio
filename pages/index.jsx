@@ -92,7 +92,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className='w-[calc(100%-2rem)] m-auto mt-3'>
+            <section className='w-[calc(100%-2rem)] lg:w-[calc(60%-2rem)] border m-auto mt-3'>
                 <div>
                     <h3 className='text-3xl py-1 dark:text-white '>About me</h3>
                     <p className='text-md py-2 leading-8 text-gray-800 dark:text-gray-200'>

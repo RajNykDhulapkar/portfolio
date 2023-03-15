@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 
@@ -6,10 +6,18 @@ import Header from "../Header";
 function HomeLayout({ children }) {
     const [darkMode, setDarkMode] = useState(false);
 
+    // check if darkmode is set in local storage
+    useEffect(() => {
+        if (localStorage.getItem("darkMode") === "true") {
+            setDarkMode(true);
+        }
+    }, []);
+
+
     return (
         <div className={(darkMode ? "dark" : "") + " "}>
-            <main className=' bg-white dark:bg-gray-900 flex flex-col min-h-screen'>
-                <Header setDarkMode={setDarkMode} />
+            <main className=' bg-slate-100 dark:bg-gray-900 flex flex-col min-h-screen'>
+                <Header darkMode={darkMode} setDarkMode={setDarkMode} />
                 <div className='flex-grow'>{children}</div>
                 <Footer />
             </main>
